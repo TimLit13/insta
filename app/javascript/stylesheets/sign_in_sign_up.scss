@@ -23,3 +23,32 @@
    max-width: 240px;
  }
 }
+
+.landing-right{
+  .box{
+    background-color: #fff;
+    border: 1px solid #6e6e6e;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0 0 10px;
+    width: 350px;
+  }
+
+  .form-control{
+    width: 100%;
+  }
+
+  .btn-outline-success{
+    width: 100%;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 14px;
+  }
+
+  .btn-outline-secondary{
+    padding: 0 10px;
+    font-weight: 400;
+    font-size: 12px;
+  }
+
+}
