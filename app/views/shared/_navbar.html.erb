@@ -22,7 +22,11 @@
         <li class="nav-item profile-icon">
           <%= link_to image_pack_tag('person.svg', class: 'profile-icon'), '#', class: "nav-link"%>
         </li>
-
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'sign out', destroy_user_session_path, method: :delete, class: "nav-link btn btn-outline-secondary"%>
+          </li>
+          <% end %>
       </ul>
 
     </div>
