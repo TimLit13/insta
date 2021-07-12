@@ -12,5 +12,6 @@ import "../stylesheets/application"
 import "../stylesheets/navbar"
 import "../stylesheets/sign_in_sign_up"
 import "../stylesheets/main"
+import "../stylesheets/footer"
 
 require.context('../images', true)
