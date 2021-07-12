@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+  <div class="container">
+    <%= link_to image_pack_tag('core-sprite-2x.png', class: 'main-img'), root_path, class: "navbar-brand"%>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+      <form class="d-flex">
+        <input class="form-control me-2 justify-content-end" type="search" placeholder="Search" aria-label="Search">
+      </form>
+    </div>
+    <div>
+      <ul class="navbar-nav justify-content-end">
+
+        <li class="nav-item">
+          <%= link_to image_pack_tag('search.svg', class: 'explore-icon'), '#', class: "nav-link"%>
+        </li>
+        <li class="nav-item">
+          <%= link_to image_pack_tag('heart.svg', class: 'notification-icon'), '#', class: "nav-link"%>
+        </li>
+        <li class="nav-item profile-icon">
+          <%= link_to image_pack_tag('person.svg', class: 'profile-icon'), '#', class: "nav-link"%>
+        </li>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'sign out', destroy_user_session_path, method: :delete, class: "nav-link btn btn-outline-secondary"%>
+          </li>
+          <% end %>
+      </ul>
+
+    </div>
+  </div>
+</nav>
