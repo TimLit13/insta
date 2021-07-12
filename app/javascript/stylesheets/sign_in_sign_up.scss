@@ -1,0 +1,25 @@
+ .landing-left{
+   .dummy-phone{
+      background-image: url("../images/log_in_page/dummy-phone.png");
+      background-repeat: no-repeat;
+      background-size: 373px 625px;
+      position: relative;
+      height: 618px;
+      margin-left: -45px;
+      margin-right: -15px;
+   }
+
+ .screenshot{
+   position: absolute;
+   top: 85px;
+   left: 108px;
+
+   .item{
+      position: absolute;
+   }
+ }
+ .carousel-item{
+   max-height: 427px;
+   max-width: 240px;
+ }
+}
