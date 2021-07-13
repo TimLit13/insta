@@ -13,8 +13,18 @@
 
   <body>
     <%= render 'shared/navbar' if current_user %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+
+    <div class="row notifications">
+    <div class = "col-md-12">
+      <% flash.each do |name, message|%>
+        <div class = "alert <%= bootstrap_class_for(name) %> alert-dismissible fade show" >
+          <%= message %>
+        </div>
+       <% end %>          
+      </div>
+    </div>
+
+
     <div class="content">
       <%= yield %>
     </div>
