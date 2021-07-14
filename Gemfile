@@ -14,11 +14,13 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'pg'
 gem 'webpacker', '~> 5.x'
 gem 'devise'
+gem 'omniauth-github'
 #_______________________________________________________________________________
 
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'dotenv'
 end
 
 group :development do
