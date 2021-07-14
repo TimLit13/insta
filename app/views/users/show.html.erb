@@ -8,11 +8,15 @@
 			<p class="username">
 				<%= @user.name %>
 			</p>
-			
+			<div>
+				<br>
+			</div>
 			<br/>
 			<%= link_to 'Edit profile', '#' , class: "btn btn-outline-secondary edit-profile" %>
 			<br>
-
+			<div>
+				<br>
+			</div>
 			<button type="button" class="btn btn-outline-secondary edit-profile settings" data-bs-toggle="modal" data-bs-target="#exampleModal">
 				Settings
 			</button>
@@ -21,24 +25,32 @@
 				<div class="modal-dialog modal-dialog-centered">
 				    <div class="modal-content">
 					    <div class="modal-header">
-					    	<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+					    	<h5 class="modal-title" id="exampleModalLabel">Settings</h5>
 					    	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					    </div>
-					    <div class="modal-body">
-					    ...
 					    </div>
 					    <div class="list-group text-center">
 					    	<%= link_to 'Change password', '#', class: "list-group list-group-item-action btn btn-outline-secondary"%>
-					    	<%= link_to 'sign out', destroy_user_session_path, method: :delete, class: "list-group list-group-item-action btn btn-outline-secondary"%>
+					    	<%= link_to 'sign out', destroy_user_session_path, method: :delete, class: "list-group list-group-item-action btn btn-outline-warning"%>
 					    	<button class="list-group list-group-item-action btn btn-outline-danger" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
 					    </div>
 				    </div>
 				</div>
 			</div>
 		</div>
+		<div>
+			<br>
+		</div>
 		<div class="row">
 			<p class="email">
 				<%= @user.email %>
+			</p>
+		</div>
+		<div class="row account-created">
+			<p>
+				Account created at <%= @user.created_at.to_date.strftime("%d %B %Y") %>
+			</p>
+			<p>
+				Updated at <%= @user.updated_at.to_date.strftime("%d %B %Y") %>
 			</p>
 		</div>
 	</div>
