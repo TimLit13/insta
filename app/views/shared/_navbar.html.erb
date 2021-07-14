@@ -20,7 +20,7 @@
           <%= link_to image_pack_tag('heart.svg', class: 'notification-icon'), '#', class: "nav-link"%>
         </li>
         <li class="nav-item profile-icon">
-          <%= link_to image_pack_tag('person.svg', class: 'profile-icon'), '#', class: "nav-link"%>
+          <%= link_to image_pack_tag('person.svg', class: 'profile-icon'), user_path(current_user), class: "nav-link"%>
         </li>
         <% if user_signed_in? %>
           <li class="nav-item">
