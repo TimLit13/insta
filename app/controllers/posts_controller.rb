@@ -16,11 +16,9 @@ class PostsController < ApplicationController
           @post.photos.create(image: img)
         end
       end
-      redirect_to posts_path
-      flash[:notice] = "Saved.."
+      redirect_to posts_path, success: "Saved.."
     else
-      flash[:alert] = "Something went wrong.."
-      redirect_to posts_path
+      redirect_to posts_path, danger: "Something went wrong.."
     end
   end
 
