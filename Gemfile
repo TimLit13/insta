@@ -15,6 +15,7 @@ gem 'pg'
 gem 'webpacker', '~> 5.x'
 gem 'devise'
 gem 'omniauth-github'
+gem 'carrierwave', '~> 2.0'
 #_______________________________________________________________________________
 
 
