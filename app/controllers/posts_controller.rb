@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:show]
   
   def index
-    @posts = Post.all.limit(10):includes(:photos)
+    @posts = Post.all.limit(10).includes(:photos)
     @post = Post.new
   end
 
