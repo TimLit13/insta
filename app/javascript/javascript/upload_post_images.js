@@ -5,10 +5,10 @@ Dropzone.autoDiscover = false;
 $(document).ready(function(){
 	$(".upload-images").dropzone({
 		addRemoveLinks: true,
-		maxFilesize: 5,
+		maxFilesize: 3,
 		autoProcessQueue: false,
 		uploadMultiple: true,
-		parallelUploads: true,
+		parallelUploads: 100,
 		maxFiles: 100,
 		paramName: "images",
 		previewsContainer: ".dropzone-previews",
@@ -28,6 +28,7 @@ $(document).ready(function(){
 			this.on("successmultiple", function(files, response){
 				window.location.reload();
 			});
+
 		}
 	})
 })
