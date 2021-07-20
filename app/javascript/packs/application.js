@@ -15,6 +15,7 @@ import "../stylesheets/main"
 import "../stylesheets/footer"
 import "../stylesheets/user_profile"
 import "../stylesheets/edit_registration"
+import "../stylesheets/post"
 
 import "dropzone"
 
