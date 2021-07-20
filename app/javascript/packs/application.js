@@ -16,4 +16,6 @@ import "../stylesheets/footer"
 import "../stylesheets/user_profile"
 import "../stylesheets/edit_registration"
 
+import "dropzone"
+
 require.context('../images', true)
