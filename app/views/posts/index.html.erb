@@ -27,71 +27,9 @@
 				<% end %>
 			</div>
 		</div>
-		<% @posts.each do |post| %>
-
-<div class="card mt-3 post">
-	<div class="card-header">
-		<%= link_to user_path(post.user), class: "no-text-decoration" do %>
-			<%= image_tag avatar_url(post.user), class: "post-author-icon"%>
-		<% end %>
-		<%= link_to user_path(post.user), class: "normal-color no-text-decoration", title: post.user.name do %>
-			<strong><%= post.user.name %></strong>
-		<% end %>
-	</div>
-
-	<% if post.photos.any? %>
-		<div id="carouselExampleFade-<%= post.id %>" class="carousel slide carousel-fade" data-bs-ride="carousel">
-			<div class="carousel-inner">
-			  	<% post.photos.each_with_index do |photo, ind| %>
-					<% if photo.image.url(:standard) != nil %>
-					<div class="carousel-item <%= "active" if  ind == 0 %>">
-						<%= image_tag photo.image.url(:standard), class: "block w-100"%>
-					</div>
-					<% end %>
-				<% end %>
-			</div>
-			  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade-<%= post.id %>" data-bs-slide="prev">
-			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			    <span class="visually-hidden">Previous</span>
-			  </button>
-			  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade-<%= post.id %>" data-bs-slide="next">
-			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			    <span class="visually-hidden">Next</span>
-			  </button>
+		<div id="posts">
+			<%= render 'posts_list' %>
 		</div>
-	<% end %>	
-		
-	<div class="card-body">
-		<div class="row actions">
-			<a href="core-sprite love hide-text">Love</a>
-			<a href="core-sprite love hide-text">Comment</a>
-			<a href="core-sprite love hide-text ml-auto">Bookmark</a>
-		</div>
-		<div>
-			<strong><%= pluralize(16, "Like") %></strong>
-		</div>
-		<div>
-			<span>
-				<strong><%= post.user.name %></strong>
-				<span><%= post.content %></span>
-			</span>
-		</div>
-		<div class="light-color post-time">
-			<%= time_ago_in_words(post.created_at).upcase %> AGO
-		</div>
-		<hr>
-		<div class="row actions">
-			<form action="#" class="w-100">
-				<div>
-					<textarea class="form-control comment-input border-0" placeholder="Add a comment ..." rows="1"></textarea>
-				</div>
-			</form>
-		</div>
-	</div>
-
-
-</div>
-<% end %>
 	</div>
 </div>
 
