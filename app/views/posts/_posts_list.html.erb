@@ -33,9 +33,9 @@
 			
 		<div class="card-body">
 			<div class="row actions">
-				<a href="core-sprite love hide-text">Love</a>
-				<a href="core-sprite love hide-text">Comment</a>
-				<a href="core-sprite love hide-text ml-auto">Bookmark</a>
+				<%= link_to image_pack_tag('posts/heart.svg', class: 'post-heart-icon'), '#', class: "nav-link"%>
+				<%= link_to image_pack_tag('posts/comment.svg', class: 'post-comment-icon'), '#', class: "nav-link"%>
+				<%= link_to image_pack_tag('posts/bookmark.svg', class: 'post-bookmark-icon'), '#', class: "nav-link"%>
 			</div>
 			<div>
 				<strong><%= pluralize(16, "Like") %></strong>
