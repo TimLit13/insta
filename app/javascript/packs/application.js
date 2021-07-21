@@ -21,3 +21,6 @@ import "../javascript/upload_post_images"
 import "dropzone"
 
 require.context('../images', true)
+
+
+import "../stylesheets/posts_list"
