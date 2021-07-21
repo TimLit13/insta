@@ -42,10 +42,13 @@
 		<% end %>
 	</div>
 
-	
-
-
-
+	<% if post.photos.any? %>
+		<% post.photos.each do |photo| %>
+				<% if photo.image.url(:standard) != nil %>
+					<%= image_tag photo.image.url(:standard)%>
+				<% end %>
+		<% end %>
+	<% end %>	
 
 	<div class="card-body">
 		<div class="row actions">
