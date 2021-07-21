@@ -27,10 +27,7 @@
 				<% end %>
 			</div>
 		</div>
-	</div>
-</div>
-
-<% @posts.each do |post| %>
+		<% @posts.each do |post| %>
 
 <div class="card mt-3 post">
 	<div class="card-header">
@@ -43,13 +40,27 @@
 	</div>
 
 	<% if post.photos.any? %>
-		<% post.photos.each do |photo| %>
-				<% if photo.image.url(:standard) != nil %>
-					<%= image_tag photo.image.url(:standard)%>
+		<div id="carouselExampleFade-<%= post.id %>" class="carousel slide carousel-fade" data-bs-ride="carousel">
+			<div class="carousel-inner">
+			  	<% post.photos.each_with_index do |photo, ind| %>
+					<% if photo.image.url(:standard) != nil %>
+					<div class="carousel-item <%= "active" if  ind == 0 %>">
+						<%= image_tag photo.image.url(:standard), class: "block w-100"%>
+					</div>
+					<% end %>
 				<% end %>
-		<% end %>
+			</div>
+			  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade-<%= post.id %>" data-bs-slide="prev">
+			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			    <span class="visually-hidden">Previous</span>
+			  </button>
+			  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade-<%= post.id %>" data-bs-slide="next">
+			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			    <span class="visually-hidden">Next</span>
+			  </button>
+		</div>
 	<% end %>	
-
+		
 	<div class="card-body">
 		<div class="row actions">
 			<a href="core-sprite love hide-text">Love</a>
@@ -81,3 +92,6 @@
 
 </div>
 <% end %>
+	</div>
+</div>
+
