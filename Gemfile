@@ -19,6 +19,8 @@ gem 'omniauth-github'
 gem 'carrierwave', '~> 2.0'
 gem 'cloudinary'
 gem 'figaro'
+
+gem 'dropzonejs-rails'
 #______________________________________________________________________________
 
 

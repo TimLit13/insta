@@ -15,5 +15,12 @@ import "../stylesheets/main"
 import "../stylesheets/footer"
 import "../stylesheets/user_profile"
 import "../stylesheets/edit_registration"
+import "../stylesheets/post"
+import "../javascript/upload_post_images"
+
+import "dropzone"
 
 require.context('../images', true)
+
+
+import "../stylesheets/posts_list"
