@@ -41,7 +41,35 @@
 		<% end %>	
 			
 		<div class="card-body">
-			<%= render 'love_comment_bookmark' %>
+			<div class="row actions">
+				<% if post.is_liked(current_user).present? %>
+					<%= link_to image_pack_tag('posts/heart_filled_red.svg', class: 'post-heart-icon'), like_path(post.is_liked(current_user)), class: "col-sm-1", method: :delete, remote: true, data: {confirm: "Are you shure to cancel like?"}  %>
+				<% else %>
+					<%= link_to image_pack_tag('posts/heart.svg', class: 'post-heart-icon'), post_likes_path(post), class: "col-sm-1", method: :post, remote: true %>
+				<% end %>
+				<%= link_to image_pack_tag('posts/comment.svg', class: 'post-comment-icon'), '#', class: "col-sm-1"%>
+				<div class="col-sm-9"></div>
+				<%= link_to image_pack_tag('posts/bookmark.svg', class: 'post-bookmark-icon'), '#', class: "col-sm-1"%>
+			</div>
+			<div>
+				<strong>
+					<% post.likes.each_with_index do |like, index| %>
+						<% if post.likes.size == 1 %>
+							<%= like.user.name %> </strong> like this
+						<% elsif like == post.likes.last %>
+							</strong> and <strong>
+							<%= + like.user.name %></strong> like this
+						<% elsif index > 1 %>
+							</strong><%= "and" + (post.likes.size-index).to_s + "others" %> like this
+							<% break %>
+						<% elsif index == post.likes.size-2 || index == 1 %>
+							<%=  like.user.name %>
+						<% else %>
+							<%= like.user.name + ", "%>
+						<% end %>
+					<% end %>
+				</strong>
+			</div>	
 			<div>
 				<span>
 					<strong><%= post.user.name %></strong>
