@@ -1,0 +1,63 @@
+<div class="d-flex flex-column align-items-center mt-3">
+	<div class="row post box col-xl-10 col-lg-11 col-xs-12">
+		<div class="col-lg-8 col-md-7 px-0 d-flex post-show-img">
+			<div class="align-self-center">
+				<% if @post.photos.any? %>
+					<div id="carouselExampleFade-<%= @post.id %>" class="carousel slide carousel-fade" data-bs-ride="carousel">
+						<div class="carousel-inner">
+						  	<% @post.photos.each_with_index do |photo, ind| %>
+								<% if photo.image.url(:standard) != nil %>
+								<div class="carousel-item <%= "active" if  ind == 0 %>">
+									<%= image_tag photo.image.url(:standard), class: "block w-100"%>
+								</div>
+								<% end %>
+							<% end %>
+						</div>
+						<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade-<%= @post.id %>" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					    	<span class="visually-hidden">Previous</span>
+						</button>
+					  	<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade-<%= @post.id %>" data-bs-slide="next">
+					    	<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					    	<span class="visually-hidden">Next</span>
+					  	</button>
+					</div>
+				<% end %>
+			</div>
+		</div>
+		<div class="col-lg-4 col-md-5 mt-sm-4 mt-md-0">
+			<div class="row px-3">
+				<%= link_to user_path(@post.user), class: "no-text-decoration" do%>
+					<%= image_tag avatar_url(@post.user), class: "post-author-icon" %>
+				<% end %>
+				<%= link_to user_path(@post.user), class: "normal-color no-text-decoration d-flex align-self-center", title: @post.user.name do%>
+					<strong><%= @post.user.name %></strong>
+				<% end %>
+			</div>
+			<hr class="mb-0">
+			<div class="comment-list py-2">
+				<% if @post.content.present? %>
+					<div>
+						<span>
+							<strong><%= @post.user.name %></strong>
+						</span>
+						<span>
+							<%= @post.content %>
+						</span>
+					</div>
+				<% end %>
+				<!-- load comment stub -->
+				<% 100.times do %>
+					<div>
+						<span>
+							<strong>Smbd</strong>
+						</span>
+						<span>
+							smth
+						</span>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div> 
