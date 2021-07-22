@@ -1,11 +1,20 @@
 <% @posts.each do |post| %>
 	<div class="card mt-3 post">
-		<div class="card-header">
-			<%= link_to user_path(post.user), class: "no-text-decoration" do %>
-				<%= image_tag avatar_url(post.user), class: "post-author-icon"%>
-			<% end %>
-			<%= link_to user_path(post.user), class: "normal-color no-text-decoration", title: post.user.name do %>
-				<strong><%= post.user.name %></strong>
+		<div class="card-header d-flex align-items-center">
+			<div class="col-sm-11">
+				<%= link_to user_path(post.user), class: "no-text-decoration" do %>
+					<%= image_tag avatar_url(post.user), class: "post-author-icon"%>
+				<% end %>
+				<%= link_to user_path(post.user), class: "normal-color no-text-decoration", title: post.user.name do %>
+					<strong><%= post.user.name %></strong>
+				<% end %>
+			</div>
+			<% if post.user == current_user %>
+				<div class="col-sm-1">
+					<%= link_to post_path(post), method: :delete, class: "ml-auto delete-post-icon mx-0 my-auto text-right", data: {confirm: "You really wants to delete post?"} do %>
+						<i class="far fa-trash-alt" aria-hidden="true"></i>
+					<% end%>
+				</div>
 			<% end %>
 		</div>
 
@@ -32,24 +41,14 @@
 		<% end %>	
 			
 		<div class="card-body">
-			<div class="row actions">
-				<%= link_to image_pack_tag('posts/heart.svg', class: 'post-heart-icon'), '#', class: "col-sm-1"%>
-				<%= link_to image_pack_tag('posts/comment.svg', class: 'post-comment-icon'), '#', class: "col-sm-1"%>
-				<div class="col-sm-9"></div>
-				<%= link_to image_pack_tag('posts/bookmark.svg', class: 'post-bookmark-icon'), '#', class: "col-sm-1"%>
-			</div>
-			<div>
-				<strong><%= pluralize(16, "Like") %></strong>
-			</div>
+			<%= render 'love_comment_bookmark' %>
 			<div>
 				<span>
 					<strong><%= post.user.name %></strong>
 					<span><%= post.content %></span>
 				</span>
 			</div>
-			<div class="light-color post-time">
-				<%= time_ago_in_words(post.created_at).upcase %> AGO
-			</div>
+			<%= link_to time_ago_in_words(post.created_at).upcase + "AGO", post_path(post), class: "light-color post-time no-text-decoration" %>
 			<hr>
 			<div class="row actions">
 				<form action="#" class="w-100">
