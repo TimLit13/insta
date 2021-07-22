@@ -58,6 +58,17 @@
 					</div>
 				<% end %>
 			</div>
+			<hr class="mt-0">
+			<%= render 'love_comment_bookmark' %>
+			<%= link_to time_ago_in_words(@post.created_at).upcase + "AGO", post_path(@post), class: "light-color post-time no-text-decoration" %>
+			<hr>
+			<div class="row actions">
+				<form action="#" class="w-100">
+					<div>
+						<textarea class="form-control comment-input border-0" placeholder="Add a comment ..." rows="1"></textarea>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
 </div> 
