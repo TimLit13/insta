@@ -50,7 +50,11 @@
 					</div>
 					<%= link_to image_pack_tag('posts/comment.svg', class: 'post-comment-icon'), '#', class: "col-sm-1"%>
 					<div class="col-sm-7"></div>
-					<%= link_to image_pack_tag('posts/bookmark.svg', class: 'post-bookmark-icon'), '#', class: "col-sm-1"%>
+
+					<div id="bookmark-icon-post-<%= @post.id.to_s %>" class= "col-sm-1">
+						<%= render "bookmark_icon", {is_bookmarked: @is_bookmarked, post: @post} %>
+					</div>
+
 				</div>
 				<div id="like-text-post-<%= @post.id.to_s %>">
 					<%= render "like_text", {likes: @likes} %>
