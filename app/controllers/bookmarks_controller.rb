@@ -5,6 +5,7 @@ class BookmarksController < ApplicationController
   def create
     @bookmark = current_user.bookmarks.build(bookmark_params)
     @post = @bookmark.post
+    @is_bookmarked = @bookmark
     if @bookmark.save
       respond_to :js
     else
@@ -25,7 +26,7 @@ class BookmarksController < ApplicationController
   private
 
   def bookmark_params
-    params.required(:bookmark).permit :post_id, :user_id
+    params.permit :post_id, :user_id
   end
 
 end
