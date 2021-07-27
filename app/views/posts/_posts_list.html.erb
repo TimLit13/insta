@@ -18,28 +18,7 @@
 			<% end %>
 		</div>
 
-		<% if post.photos.any? %>
-			<div id="carouselExampleFade-<%= post.id %>" class="carousel slide carousel-fade" data-bs-ride="carousel">
-				<div class="carousel-inner">
-				  	<% post.photos.each_with_index do |photo, ind| %>
-						<% if photo.image.url(:standard) != nil %>
-						<div class="carousel-item <%= "active" if  ind == 0 %>">
-							<%= image_tag photo.image.url(:standard), class: "block w-100"%>
-						</div>
-						<% end %>
-					<% end %>
-				</div>
-				  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade-<%= post.id %>" data-bs-slide="prev">
-				    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				    <span class="visually-hidden">Previous</span>
-				  </button>
-				  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade-<%= post.id %>" data-bs-slide="next">
-				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-				    <span class="visually-hidden">Next</span>
-				  </button>
-			</div>
-		<% end %>
-
+		<%= render "photos", {post: post} %>
 
 		<div class="card-body">
 			<div class="row actions">

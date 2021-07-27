@@ -2,27 +2,7 @@
 	<div class="row post box col-xl-10 col-lg-11 col-xs-12">
 		<div class="col-lg-8 col-md-7 px-0 d-flex post-show-img">
 			<div class="align-self-center">
-				<% if @post.photos.any? %>
-					<div id="carouselExampleFade-<%= @post.id %>" class="carousel slide carousel-fade" data-bs-ride="carousel">
-						<div class="carousel-inner">
-						  	<% @post.photos.each_with_index do |photo, ind| %>
-								<% if photo.image.url(:standard) != nil %>
-								<div class="carousel-item <%= "active" if  ind == 0 %>">
-									<%= image_tag photo.image.url(:standard), class: "block w-100"%>
-								</div>
-								<% end %>
-							<% end %>
-						</div>
-						<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade-<%= @post.id %>" data-bs-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					    	<span class="visually-hidden">Previous</span>
-						</button>
-					  	<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade-<%= @post.id %>" data-bs-slide="next">
-					    	<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					    	<span class="visually-hidden">Next</span>
-					  	</button>
-					</div>
-				<% end %>
+				<%= render "photos", {post: @post} %>
 			</div>
 		</div>
 		<div class="col-lg-4 col-md-5 mt-sm-4 mt-md-0">			
@@ -71,35 +51,17 @@
 			<hr class="mt-0">
 			<div>
 				<div class="row actions">
-					<% if @post.is_liked(current_user).present? %>
-						<%= link_to image_pack_tag('posts/heart_filled_red.svg', class: 'post-heart-icon'), like_path(@post.is_liked(current_user)), class: "col-sm-2", method: :delete, remote: true, data: {confirm: "Are you shure to cancel like?"}  %>
-					<% else %>
-						<%= link_to image_pack_tag('posts/heart.svg', class: 'post-heart-icon'), post_likes_path(@post), class: "col-sm-2", method: :post, remote: true %>
-					<% end %>
+					<div id="like-icon-post-<%= @post.id.to_s %>" class= "col-sm-2">
+						<%= render "like_icon", {is_liked: @is_liked, post: @post} %>
+					</div>
 					<%= link_to image_pack_tag('posts/comment.svg', class: 'post-comment-icon'), '#', class: "col-sm-1"%>
-					<div class="col-sm-8"></div>
+					<div class="col-sm-7"></div>
 					<%= link_to image_pack_tag('posts/bookmark.svg', class: 'post-bookmark-icon'), '#', class: "col-sm-1"%>
 				</div>
-				<div>
-					<strong>
-						<% @post.likes.each_with_index do |like, index| %>
-							<% if @post.likes.size == 1 %>
-								<%= like.user.name %> </strong> like this
-							<% elsif like == @post.likes.last %>
-								</strong> and <strong>
-								<%= + like.user.name %></strong> like this
-							<% elsif index > 1 %>
-								</strong><%= "and" + (@post.likes.size-index).to_s + "others" %> like this
-								<% break %>
-							<% elsif index == @post.likes.size-2 || index == 1 %>
-								<%=  like.user.name %>
-							<% else %>
-								<%= like.user.name + ", "%>
-							<% end %>
-						<% end %>
-					</strong>
-				</div>	
-							</div>	
+				<div id="like-text-post-<%= @post.id.to_s %>">
+					<%= render "like_text", {likes: @likes} %>
+				</div>		
+			</div>	
 			<%= link_to time_ago_in_words(@post.created_at).upcase + "AGO", post_path(@post), class: "light-color post-time no-text-decoration" %>
 			<hr>
 			<div class="row actions">

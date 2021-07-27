@@ -25,7 +25,7 @@ class PostsController < ApplicationController
   def show
     @photos = @post.photos
     @likes = @post.likes.includes(:user)
-    @is_likes = @post.is_liked(current_user)
+    @is_liked = @post.is_liked(current_user)
   end
 
 
