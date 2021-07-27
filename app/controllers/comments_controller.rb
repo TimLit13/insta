@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-
+  
   before_action :authenticate_user!
 
   def index
@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @post = @comment.post
     if @comment.destroy
-      respond_to: js
+      respond_to :js
     else
       flash[:alert] = "Something went wrong.."
     end
