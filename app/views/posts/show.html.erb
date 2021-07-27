@@ -38,21 +38,7 @@
 				<% end %>
 				
 				<div id="comment-post-<%= @post.id.to_s %>">
-					<% @post.comments.each do |comment| %>
-						<div class="mb-2">
-							<div class="col-sm-10">
-								<span><strong><%= comment.user.name %></strong></span>
-								<span><%= comment.content %></span>
-							</div>
-							<div class="col-sm-2">
-								<% if comment.user == current_user%>
-									<%= link_to comment_path(comment), method: :delete, class: "ml-auto delete-post-icon mx-0 my-auto delete-comment", data: {confirm: "You really want to delete comment?"}, remote: true do %>
-										<i class="far fa-trash-alt" aria-hidden="true"></i>
-									<% end%>
-								<% end %>
-							</div>
-						</div>
-					<% end %>
+					<%= render "comment_list", {post: @post} %>
 				</div>
 			</div>
 			
@@ -73,11 +59,7 @@
 			<%= link_to time_ago_in_words(@post.created_at).upcase + "AGO", post_path(@post), class: "light-color post-time no-text-decoration" %>
 			<hr>
 			<div class="row actions" id="comment-form-post-<%= @post.id %>">
-				<%= form_for [@post, Comment.new], :html => {:class => "w-100"}, remote: true do |f| %>
-					<%= f.hidden_field :user_id, value: current_user.id.to_s %>
-					<%= f.hidden_field :post_id, value: @post.id %>
-					<%= f.text_field :content, class: "form-control comment-input border-0", placeholder: "Add a comment ...", autocomplete: :off %>
-				<% end %>	
+				<%= render "comment_form", {post: @post} %>
 			</div>
 		</div>
 	</div>

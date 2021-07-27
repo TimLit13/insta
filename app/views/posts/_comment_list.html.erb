@@ -1,0 +1,15 @@
+<% post.comments.each do |comment| %>
+	<div class="mb-2">
+		<div class="col-sm-10">
+			<span><strong><%= comment.user.name %></strong></span>
+			<span><%= comment.content %></span>
+		</div>
+		<div class="col-sm-2">
+			<% if comment.user == current_user%>
+				<%= link_to comment_path(comment), method: :delete, class: "ml-auto delete-post-icon mx-0 my-auto delete-comment", data: {confirm: "You really want to delete comment?"}, remote: true do %>
+					<i class="far fa-trash-alt" aria-hidden="true"></i>
+				<% end%>
+			<% end %>
+		</div>
+	</div>
+<% end %>
