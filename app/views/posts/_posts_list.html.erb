@@ -18,44 +18,44 @@
 			<% end %>
 		</div>
 
-		<% if post.photos.any? %>
-			<div id="carouselExampleFade-<%= post.id %>" class="carousel slide carousel-fade" data-bs-ride="carousel">
-				<div class="carousel-inner">
-				  	<% post.photos.each_with_index do |photo, ind| %>
-						<% if photo.image.url(:standard) != nil %>
-						<div class="carousel-item <%= "active" if  ind == 0 %>">
-							<%= image_tag photo.image.url(:standard), class: "block w-100"%>
-						</div>
-						<% end %>
-					<% end %>
-				</div>
-				  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade-<%= post.id %>" data-bs-slide="prev">
-				    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				    <span class="visually-hidden">Previous</span>
-				  </button>
-				  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade-<%= post.id %>" data-bs-slide="next">
-				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-				    <span class="visually-hidden">Next</span>
-				  </button>
-			</div>
-		<% end %>	
-			
+		<%= render "photos", {post: post} %>
+
 		<div class="card-body">
-			<%= render 'love_comment_bookmark' %>
+			<div class="row actions">
+				<div id="like-icon-post-<%= post.id.to_s %>" class= "col-sm-1">
+					<%= render "like_icon", {is_liked: post.is_liked(current_user), post: post} %>
+				</div>
+				<div class="col-sm-1">				
+					<%= link_to image_pack_tag('posts/comment.svg', class: 'post-comment-icon'), '#' %>
+				</div>
+				<div class="col-sm-9"></div>
+
+
+				<div id="bookmark-icon-post-<%= post.id.to_s %>" class= "col-sm-1">
+					<%= render "bookmark_icon", {is_bookmarked: post.is_bookmarked(current_user), post: post} %>
+				</div>
+
+			</div>
+
+			<div id="like-text-post-<%= post.id.to_s %>">
+				<%= render "like_text", {likes: post.likes} %>
+			</div>	
+			
 			<div>
 				<span>
 					<strong><%= post.user.name %></strong>
 					<span><%= post.content %></span>
 				</span>
 			</div>
+
+			<div id="comment-post-<%= post.id.to_s %>">
+				<%= render "comment_list", {post: post} %>
+			</div>
+
 			<%= link_to time_ago_in_words(post.created_at).upcase + "AGO", post_path(post), class: "light-color post-time no-text-decoration" %>
 			<hr>
-			<div class="row actions">
-				<form action="#" class="w-100">
-					<div>
-						<textarea class="form-control comment-input border-0" placeholder="Add a comment ..." rows="1"></textarea>
-					</div>
-				</form>
+			<div class="row actions" id="comment-form-post-<%= post.id.to_s %>">
+				<%= render "comment_form", {post: post} %>
 			</div>
 		</div>
 	</div>

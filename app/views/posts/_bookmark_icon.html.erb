@@ -1,0 +1,5 @@
+<% if is_bookmarked.present? %>
+	<%= link_to  image_pack_tag('posts/bookmark_filled.svg', class: 'post-bookmark-icon'), bookmark_path(is_bookmarked), method: :delete, remote: true, data: {confirm: "Are you shure to cancel bookmark?"} %>
+<% else %>
+	<%= link_to image_pack_tag('posts/bookmark.svg', class: 'post-bookmark-icon'), post_bookmarks_path(post), class: "col-sm-1", method: :post, remote: true %>
+<% end %>

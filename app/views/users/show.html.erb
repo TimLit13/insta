@@ -58,4 +58,28 @@
 			</div>
 		<% end %>
 	</div>
+	<div class="profile-tab">
+		<% if @user == current_user %>
+			<nav>
+				<div class="nav nav-tabs d-flex justify-content-center" id="nav-tab" role="tablist">
+				    <button class="nav-link active" id="nav-post-tab" data-bs-toggle="tab" data-bs-target="#nav-post" type="button" role="tab" aria-controls="nav-post" aria-selected="true">POSTS</button>
+				    <button class="nav-link" id="nav-saved-tab" data-bs-toggle="tab" data-bs-target="#nav-saved" type="button" role="tab" aria-controls="nav-saved" aria-selected="false">SAVED</button>
+				</div>
+			</nav>
+		<% end %>
+		<div class="tab-content pb-3" id="nav-tabContent">
+			<div class="tab-pane fade show active" id="nav-post" role="tabpanel" aria-labelledby="nav-post-tab">
+				<div class="row">
+					<%= render "post", {posts: @posts} %>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="nav-saved" role="tabpanel" aria-labelledby="nav-saved-tab">
+				<div class="row">
+					<%= render "post", {posts: @saved} if @user == current_user %>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
 </div>

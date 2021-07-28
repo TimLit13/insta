@@ -26,3 +26,62 @@
 	height: '152';
 	border-radius: 50%;
 }
+
+
+.profile-tab{
+	margin-top: 60px;
+
+	.nav-tabs{
+		border: 0;
+		border-top: 1px solid #ddd;
+
+		.nav-link{
+			border-radius: 0;
+			border: 0;
+			border-top: 1px solid transparent;
+			margin-top: -1px;
+			padding: 10px 0;
+			background: transparent;
+			font-weight: 700;
+			color: #999;
+			margin-right: 5px;
+			margin-left: 5px;
+		}
+
+		.nav-link.active{
+			color: #262626;
+			border-top: 1px solid #262626;
+			margin-left: 5px;
+		}
+	}
+
+	.col-sm-4{
+		.post-stat{
+			text-decoration: none;
+			position: absolute;
+			color: white;
+			font-size: 18px;
+			font-weight: 700;
+			width: 355px;
+			height: 355px;
+			top: 400;
+			left: 400;
+			opacity: 0;
+		}
+	}
+	
+
+	.fa{
+		margin-left: 10px;
+	}
+
+	.col-sm-4:hover .post-stat{
+		background-color: rgba(0,0,0, 0.3);
+		opacity: 1;	
+	}
+
+	.image-preview{
+		margin-bottom: 30px;
+
+	}
+}

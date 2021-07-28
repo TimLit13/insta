@@ -2,27 +2,7 @@
 	<div class="row post box col-xl-10 col-lg-11 col-xs-12">
 		<div class="col-lg-8 col-md-7 px-0 d-flex post-show-img">
 			<div class="align-self-center">
-				<% if @post.photos.any? %>
-					<div id="carouselExampleFade-<%= @post.id %>" class="carousel slide carousel-fade" data-bs-ride="carousel">
-						<div class="carousel-inner">
-						  	<% @post.photos.each_with_index do |photo, ind| %>
-								<% if photo.image.url(:standard) != nil %>
-								<div class="carousel-item <%= "active" if  ind == 0 %>">
-									<%= image_tag photo.image.url(:standard), class: "block w-100"%>
-								</div>
-								<% end %>
-							<% end %>
-						</div>
-						<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade-<%= @post.id %>" data-bs-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					    	<span class="visually-hidden">Previous</span>
-						</button>
-					  	<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade-<%= @post.id %>" data-bs-slide="next">
-					    	<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					    	<span class="visually-hidden">Next</span>
-					  	</button>
-					</div>
-				<% end %>
+				<%= render "photos", {post: @post} %>
 			</div>
 		</div>
 		<div class="col-lg-4 col-md-5 mt-sm-4 mt-md-0">			
@@ -32,7 +12,7 @@
 						<%= image_tag avatar_url(@post.user), class: "post-author-icon" %>
 					<% end %>
 				<div class="col-sm-8">
-					<%= link_to user_path(@post.user), class: "normal-color no-text-decoration d-flex align-self-center", title: @post.user.name do%>
+					<%= link_to user_path(@post.user), class: "normal-color no-text-decoration d-flex align-self-center", title: @post.user.name do %>
 						<strong><%= @post.user.name %></strong>
 					<% end %>
 				</div>
@@ -56,28 +36,34 @@
 						</span>
 					</div>
 				<% end %>
-				<!-- load comment stub -->
-				<% 100.times do %>
-					<div>
-						<span>
-							<strong>Smbd</strong>
-						</span>
-						<span>
-							smth
-						</span>
-					</div>
-				<% end %>
+				
+				<div id="comment-post-<%= @post.id.to_s %>">
+					<%= render "comment_list", {post: @post} %>
+				</div>
 			</div>
+			
 			<hr class="mt-0">
-			<%= render 'love_comment_bookmark' %>
+			<div>
+				<div class="row actions">
+					<div id="like-icon-post-<%= @post.id.to_s %>" class= "col-sm-2">
+						<%= render "like_icon", {is_liked: @is_liked, post: @post} %>
+					</div>
+					<%= link_to image_pack_tag('posts/comment.svg', class: 'post-comment-icon'), '#', class: "col-sm-1"%>
+					<div class="col-sm-7"></div>
+
+					<div id="bookmark-icon-post-<%= @post.id.to_s %>" class= "col-sm-1">
+						<%= render "bookmark_icon", {is_bookmarked: @is_bookmarked, post: @post} %>
+					</div>
+
+				</div>
+				<div id="like-text-post-<%= @post.id.to_s %>">
+					<%= render "like_text", {likes: @likes} %>
+				</div>		
+			</div>	
 			<%= link_to time_ago_in_words(@post.created_at).upcase + "AGO", post_path(@post), class: "light-color post-time no-text-decoration" %>
 			<hr>
-			<div class="row actions">
-				<form action="#" class="w-100">
-					<div>
-						<textarea class="form-control comment-input border-0" placeholder="Add a comment ..." rows="1"></textarea>
-					</div>
-				</form>
+			<div class="row actions" id="comment-form-post-<%= @post.id %>">
+				<%= render "comment_form", {post: @post} %>
 			</div>
 		</div>
 	</div>
