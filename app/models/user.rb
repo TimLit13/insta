@@ -37,6 +37,13 @@ class User < ApplicationRecord
     super && provider.blank?
   end
 
+   def self.search(term)
+    if term
+      where('username LIKE ?', "%#{term}")
+    else
+      nil
+   end
+
   private
 
   def adjust_email
@@ -47,5 +54,7 @@ class User < ApplicationRecord
   def generate_token
     rand(36**8).to_s(36).concat(“@gmail.com”)
   end
+
+
 
 end
