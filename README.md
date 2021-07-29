@@ -6,7 +6,7 @@ This app works on
 
 - ruby 2.7.0
 
-- rails 6.1.4
+- rails 6.1.4, using webpack
 
 ***
 
