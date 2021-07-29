@@ -37,12 +37,13 @@ class User < ApplicationRecord
     super && provider.blank?
   end
 
-   def self.search(term)
-    if term
-      where('username LIKE ?', "%#{term}")
-    else
-      nil
-   end
+  # def self.search(term)
+  #   if term
+  #     where('username LIKE ?', "%#{term}")
+  #   else
+  #     nil
+  #   end
+  # end
 
   private
 
